@@ -1,0 +1,46 @@
+{
+  "name": "@gitdamnit/stranger-danger",
+  "version": "0.1.0",
+  "description": "Secret and PII redaction guard for AI coding agents — scans files, context windows, and outputs before secrets reach LLMs",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/plugin/index.js",
+  "exports": {
+    ".": "./dist/plugin/index.js",
+    "./engine": "./dist/engine/scanner.js"
+  },
+  "bin": {
+    "sd": "./dist/cli/index.js"
+  },
+  "files": [
+    "dist/",
+    "rules/gitleaks-rules.toml",
+    ".strangerdanger-allowlist.toml",
+    "strangerdanger.jpeg",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+"scripts": {
+     "build": "tsc",
+     "build:rules": "tsx scripts/compile-rules.ts",
+     "prebuild": "npm run build:rules",
+     "test": "tsx --test tests/engine/*.ts tests/plugin/*.ts tests/cli/*.ts tests/integration.ts",
+     "build:test": "tsc -p tsconfig.test.json",
+     "pretest": "npm run build:rules",
+     "typecheck": "tsc --noEmit",
+     "prepublishOnly": "npm run typecheck && npm test && npm run build"
+   },
+  "peerDependencies": {
+    "@opencode-ai/plugin": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "^1.0.0",
+    "@types/node": "^22.19.19",
+    "toml": "^3.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

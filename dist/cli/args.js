@@ -1,0 +1,84 @@
+export function parseArgs(argv) {
+    const args = argv.slice(2);
+    let command = args[0] || "help";
+    const positional = [];
+    const flags = {};
+    // --help is always a flag, never a command
+    if (command === "--help" || command === "-h") {
+        flags.help = true;
+        command = "help";
+    }
+    for (let i = 1; i < args.length; i++) {
+        const arg = args[i];
+        if (arg.startsWith("--")) {
+            const key = arg.slice(2);
+            const next = args[i + 1];
+            if (next && !next.startsWith("--")) {
+                flags[key] = next;
+                i++;
+            }
+            else {
+                flags[key] = true;
+            }
+        }
+        else if (arg.startsWith("-") && arg.length === 2) {
+            const key = arg[1];
+            // Short flag aliases
+            if (key === "j") {
+                flags["json"] = true;
+            }
+            else if (key === "h") {
+                flags["help"] = true;
+            }
+            else {
+                const next = args[i + 1];
+                if (next && !next.startsWith("-")) {
+                    flags[key] = next;
+                    i++;
+                }
+                else {
+                    flags[key] = true;
+                }
+            }
+        }
+        else if (arg.startsWith("-") && arg.length > 2) {
+            // Short flags grouped (e.g., -jh)
+            const chunk = arg.slice(1);
+            for (const ch of chunk) {
+                if (ch === "j") {
+                    flags["json"] = true;
+                }
+                else if (ch === "h") {
+                    flags["help"] = true;
+                }
+                else {
+                    flags[ch] = true;
+                }
+            }
+        }
+        else {
+            positional.push(arg);
+        }
+    }
+    return { command, positional, flags };
+}
+export const USAGE = `
+strangerDanger v0.1.0 — Secret and PII redaction guard
+
+Usage: sd <command> [options]
+
+Commands:
+  scan <file|directory|->    Scan a file, directory, or stdin for secrets
+  redact <file>              Redact secrets in a file in-place (creates .backup)
+  audit                      Show the audit log
+  rules                      List all active detection rules
+  allowlist add              Add an allowlist entry interactively
+  allowlist show             Show current allowlist entries
+  version                    Show version
+
+Options:
+  --source <type>            Source type for scan: file, context, output, message
+  --json                     Output in JSON format
+  --help                     Show this help message
+`;
+//# sourceMappingURL=args.js.map

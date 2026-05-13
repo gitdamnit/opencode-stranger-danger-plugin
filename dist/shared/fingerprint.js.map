@@ -1,0 +1,1 @@
+{"version":3,"file":"fingerprint.js","sourceRoot":"","sources":["../../src/shared/fingerprint.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,aAAa,CAAC;AAEzC;;;;GAIG;AACH,MAAM,UAAU,WAAW,CAAC,KAAa;IACrC,OAAO,UAAU,CAAC,QAAQ,CAAC,CAAC,MAAM,CAAC,KAAK,CAAC,CAAC,MAAM,CAAC,KAAK,CAAC,CAAC,KAAK,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC;AACxE,CAAC"}

@@ -1,0 +1,12 @@
+[[entries]]
+# description = "Example: ignore a specific fingerprint"
+# fingerprint = "a3f7b2c1"
+
+# description = "Example: ignore all findings from a rule"
+# ruleId = "generic-api-key"
+
+# description = "Example: ignore findings in a specific file"
+# path = "test/fixtures/*.ts"
+
+# description = "Example: ignore findings matching a regex"
+# regex = "EXAMPLE"
