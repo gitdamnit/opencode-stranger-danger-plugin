@@ -1,6 +1,6 @@
-# strangerDanger
-
 ![strangerDanger logo](./strangerdanger2.jpeg)
+
+# @gitdamnit/stranger-danger
 
 Secret and PII redaction guard for AI coding agents.
 
