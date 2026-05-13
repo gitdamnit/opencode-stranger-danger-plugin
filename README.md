@@ -1,6 +1,6 @@
 # strangerDanger
 
-![strangerDanger logo](./strangerdanger.jpeg)
+![strangerDanger logo](./strangerdanger2.jpeg)
 
 Secret and PII redaction guard for AI coding agents.
 
